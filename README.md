@@ -1,6 +1,5 @@
 # SW-Group-Project
-This is our SW group project , GO together!!!!
-
+BankSystem
 Code written by: 당택군
 Report: 당택군, 홍세원
 
