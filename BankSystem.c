@@ -5,65 +5,65 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#define upNum 2000 //系统最多容纳的用户数
+#define upNum 2000 
 
 struct record
 {
-    int account; //账号
-    int password;  //密码
-    char name[10];   //用户名
-    double balance;  //账户余额
-    int status;  //状态
+    int account;
+    int password; 
+    char name[10];   
+    double balance;  
+    int status;  
 };
 
-struct record users[upNum];   //银行所有用户
+struct record users[upNum];
 
-int N;  //实际的用户数目
+int N;
 
-void pass();  //用户登录
+void pass();
 
-void adminpass(); //管理员登录
+void adminpass();
 
-void readData();  //开始前从文件中读数据，存在数组中
+void readData();
 
-void writeData();   //程序结束前，将数组中的数据写入到文件中
+void writeData();
 
-int chooseInMenu(); //显示菜单并由业务员选择
+int chooseInMenu();
 
-void openAccount(); //开户
+void openAccount();
 
-void save();   //存款
+void save();
 
-void Menu(); //用户菜单
+void Menu();
 
-void withdraw();   //取款
+void withdraw();
 
-void showAccount(); //查询用户信息
+void showAccount();
 
-void showAll();  //显示所有用户
+void showAll();
 
-void showBalance(); //查询余额
+void showBalance();
 
-void findData();  //查询消费记录(没做出来)
+void findData();
 
-void freeze();  //冻结
+void freeze();
 
-void cancelfreeze();  //解除冻结
+void cancelfreeze();
 
-int inputPassword();   //返回键盘输入的密码
+int inputPassword();
 
-int search(int);  //根据账号找到用户数据对应的下标
+int search(int);
 
-int welcomeMenu();//登录界面
+int welcomeMenu();
 
-int ichooseInMenu();//用户菜单
+int ichooseInMenu();
 
-int adminchooseMenu();//管理员菜单
+int adminchooseMenu();
 
-void adminMenu();//管理员菜单
+void adminMenu();
 
 
-void welcome();//欢迎界面功能
+void welcome();
 #endif // BANK_H_INCLUDED
 
 
@@ -76,18 +76,24 @@ int welcomeMenu()
     {
     printf("+------------------------------+\n");
     printf("+                              +\n");
-    printf("+    welcome bank wystem       +\n");
+    printf("+    Welcome Bank System       +\n");
     printf("+                              +\n");
-    printf("+  1 create  2 sign up  3 admin+\n");
-    printf("+          0 quit              +\n");
+    printf("+         1 Create             +\n");
+    printf("+                              +\n");
+    printf("+         2 Sign up            +\n");
+    printf("+                              +\n");
+    printf("+         3 Admin              +\n");
+    printf("+                              +\n");
+    printf("+         0 Quit               +\n");
+    printf("+                              +\n");
     printf("+------------------------------+\n");
-    printf("choose: ");
+    printf("Please select the business you want to handle: ");
     fflush(stdin);
     scanf("%d",&i);
     if(i>=0 &&i<=3)
             break;
         else
-            printf("choose wrong ,again\n\n");
+            printf("Invalid selection, please select again!\n\n");
     }
     return i;
 }
@@ -99,7 +105,7 @@ int ichooseInMenu()
     while(1)
     {
         printf("\n");
-        printf("+--------------+\n");
+        printf("+---------------------------+\n");
         printf("|  1 search balance         |\n");
         printf("|  2 search history change  |\n");
         printf("|  3 depoist money          |\n");
@@ -111,7 +117,7 @@ int ichooseInMenu()
         if(i>=0 &&i<=4)
             break;
         else
-            printf("输入有误,请重新选择\n\n");
+            printf("Incorrect input, please choose again\n\n");
     }
     return i;
 }
@@ -123,23 +129,23 @@ int adminchooseMenu()
     while(1)
     {
         printf("\n");
-        printf("+-------------------+\n");
-        printf("|   1 search balance       |\n");
-        printf("|   2 history chage        |\n");
-        printf("|   3 depoist money        |\n");
-        printf("|   4 withdraw money       |\n");
-        printf("|   5 serch all acoount    |\n");
-        printf("|   6 search account       |\n");
-        printf("|   7 freeze account       |\n");
-        printf("|   8 Unfreeze your account|\n");
-        printf("|   0 退出          |\n");
-        printf("+-------------------+\n");
+        printf("+--------------------------------------------------+\n");
+        printf("|                1 search balance                  |\n");
+        printf("|                2 history chage                   |\n");
+        printf("|                3 deposit money                   |\n");
+        printf("|                4 withdraw money                  |\n");
+        printf("|                5 Show all account information    |\n");
+        printf("|                6 search account                  |\n");
+        printf("|                7 freeze account                  |\n");
+        printf("|                8 Unfreeze your account           |\n");
+        printf("|                0 Quit                            |\n");
+        printf("+--------------------------------------------------+\n");
         printf("enter ur choice: ");
         scanf("%d",&i);
         if(i>=0 &&i<=8)
             break;
         else
-            printf("enter wrong,choice agagin!\n\n");
+            printf("enter wrong,choice again!\n\n");
     }
     return i;
 }
@@ -166,7 +172,7 @@ void welcome()
             adminpass();/*管理员登录*/
             break;
         case 0:
-            printf("欢迎您再来. \n");
+            printf("You are welcome to come again. \n");
         }
     }
     while(Choice);
@@ -309,7 +315,7 @@ void Menu()
             withdraw();/*取钱*/
             break;
         case 0:
-            printf("欢迎您再来. \n");
+            printf("You are welcome to come again. \n");
             break;
         }
     }
@@ -367,7 +373,7 @@ void save()
     who = search(id);  //根据账号查询用户，返回用户的下标
     if(who<0)   //说明id账户不存在
     {
-        printf("该用户不存在，存款失败！\n");
+        printf("The user does not exist, the deposit failed！\n");
     }
     else
     {
@@ -396,42 +402,42 @@ void withdraw()
     int id, who;
     int iPass;
     double money;
-    printf("输入要取款的账号：");
+    printf("Enter the account number to withdraw：");
     scanf("%d", &id);
     who = search(id);  //根据账号查询用户，返回用户的下标
     if(who<0)   //说明id账户不存在
     {
-        printf("该用户不存在，取款失败1！\n");
+        printf("The user does not exist, withdrawal failed！\n");
     }
     else
     {
         if(users[who].status==0)
         {
-            printf("用户姓名：%s\n", users[who].name);
-            printf("密码：");
+            printf("username：%s\n", users[who].name);
+            printf("password：");
             iPass=inputPassword();
             if(iPass!=users[who].password)
             {
-                printf("输入密码错误，取款失败！\n");
+                printf("Incorrect password, withdrawal failed！\n");
             }
             else
             {
-                printf("输入取款额：");
+                printf("Enter withdrawal amount：");
                 scanf("%lf", &money);
                 if(money>users[who].balance)  //亲，不玩透支
                 {
-                    printf("余额不足，取款失败！\n");
+                    printf("Insufficient balance, withdrawal failed!\n");
                 }
                 else
                 {
                     users[who].balance-=money;
-                    printf("取款后，还有%.2f元. \n",users[who].balance);
+                    printf("After withdrawal, there is still %.2f yuan. \n",users[who].balance);
                 }
             }
         }
         else if(users[who].status==1)
         {
-            printf("该用户处于冻结状态，取款失败！\n");
+            printf("The user is in a frozen state and the withdrawal failed!\n");
         }
     }
     return;
@@ -441,18 +447,18 @@ void withdraw()
 void showBalance()
 {
     int id, who;
-    printf("账号：");
+    printf("account：");
     scanf("%d", &id);
     who = search(id);  //根据账号查询用户，返回用户的下标
     if(who<0)   //说明id账户不存在
     {
-        printf("该用户不存在！\n");
+        printf("this user does not exist！\n");
     }
     else
     {
-        printf("用户姓名：%s\n", users[who].name);
+        printf("username：%s\n", users[who].name);
         {
-            printf("余额：%.2f元. \n",users[who].balance);
+            printf("balance：%.2f元. \n",users[who].balance);
         }
     }
     return;
@@ -474,7 +480,7 @@ void showAccount()
     {
         printf("user name: s\n", users[who].name);
         {
-            printf("balance：%.2f元. \n",users[who].balance);
+            printf("balance：%.2f Dollers. \n",users[who].balance);
             printf("Status：");
             if(users[who].status==0)
             {
@@ -503,7 +509,7 @@ void findData()
 void showAll()
 {
     int i;
-    printf("账号 用户名 密码\n");
+    printf("Account Username Password\n");
     for(i=0;i<=N;i++)
     {
         printf("%d %s %d",users[i].account, users[i].name, users[i].password);
@@ -552,7 +558,7 @@ void cancelfreeze()
     who = search(id);  //根据账号查询用户，返回用户的下标
     if(who<0)   //说明id账户不存在
     {
-        printf("该用户不存在，解除冻结失败！\n");
+        printf("The user does not exist, unfreezing failed! \n");
     }
     else
     {
